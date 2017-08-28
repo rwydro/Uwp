@@ -6,30 +6,32 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using ApiControlRobot.Annotations;
+using ApiControlRobot.Dto;
 using ApiControlRobot.Logic;
 using Microsoft.Practices.Prism.Commands;
+using Action = ApiControlRobot.Logic.Action;
 
 namespace ApiControlRobot.VIewModel
 {
     public class ControlRobotViewModel:BaseVIewModel
     {
-        public DelegateCommand GetDataCommand;
+        public DelegateCommand GetDataCommand { get; set; }
         private WebService myWebService;
 
-        private int humiditly;
-        public int Humiditly
+        private string humidity;
+        public string Humidity
         {
-            get { return humiditly; }
+            get { return humidity; }
             set
             {
-                if(humiditly==value)return;
-                humiditly = value;
-                OnPropertyChanged("Humiditly");
+                if(humidity==value)return;
+                humidity = value;
+                OnPropertyChanged("Humidity");
             }
         }
 
-        private int temperature;
-        public int Temperature
+        private string temperature;
+        public string Temperature
         {
             get { return temperature; }
             set
@@ -43,14 +45,17 @@ namespace ApiControlRobot.VIewModel
         public ControlRobotViewModel():base()
         {
             GetDataCommand=new DelegateCommand(GetData);
-            myWebService= new WebService();
-            Humiditly = 20;
-            Temperature = 25;
+            myWebService = new WebService();
+            Temperature = "25";
+            Humidity = "25";
         }
 
-        private static void GetData()
-        {
-           
+        private void GetData()
+        {    
+            var result= myWebService.SendRequestToServer(Action.GetData);
+
+            Temperature = result.Temperature;
+            Humidity = result.Humidity;
         }
 
 

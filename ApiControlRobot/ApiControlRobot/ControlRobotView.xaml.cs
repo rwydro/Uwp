@@ -18,12 +18,17 @@ namespace ApiControlRobot
     /// <summary>
     /// Interaction logic for ControlRobotView.xaml
     /// </summary>
-    public partial class ControlRobotView : UserControl
+    public partial class ControlRobotView :Window
     {
         public ControlRobotView()
         {
             InitializeComponent();
 
+        }
+
+        private void UIElement_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            
         }
     }
 }

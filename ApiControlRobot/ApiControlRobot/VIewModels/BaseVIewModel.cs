@@ -22,12 +22,12 @@ namespace ApiControlRobot.VIewModel
 
         public bool CanExecute(object parameter)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public event EventHandler CanExecuteChanged;

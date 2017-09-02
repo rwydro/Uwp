@@ -1,67 +1,84 @@
-﻿<UserControl x:Class="ApiControlRobot.ControlRobotView"
+﻿<Window x:Class="ApiControlRobot.ControlRobotView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:viewModel ="clr-namespace:ApiControlRobot.VIewModel"
-             mc:Ignorable="d">
-    <UserControl.DataContext>
-        <viewModel:ControlRobotViewModel/>
-    </UserControl.DataContext>
-    <UserControl.Resources>
-        <Style  TargetType="TextBlock">
-            <Setter Property="Foreground" Value="LightSeaGreen"/>
-            <Setter Property="FontSize" Value="20"/>
+             xmlns:viewModel="clr-namespace:ApiControlRobot.VIewModel"
+             mc:Ignorable="d" Height="600" Width="400">
+    
+    <Window.DataContext>
+        <viewModel:ControlRobotViewModel />
+    </Window.DataContext>
+    
+    <Window.Resources>
+        <Image x:Key="ArrowUp" Source="Images/arrowUp.png"/>
+        <Image x:Key="ArrowRight" Source="Images/arrowRight.png"/>
+        <Image x:Key="ArrowLeft" Source="Images/arrowLeft.png"/>
+        <Image x:Key="ArrowDown" Source="Images/arrowDown.png"/>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="LightSeaGreen" />
+            <Setter Property="FontSize" Value="20" />
         </Style>
         <Style TargetType="Button">
-            <Setter Property="Foreground" Value="LightSeaGreen"/>
+            <Setter Property="Foreground" Value="LightSeaGreen" />
             <Setter Property="BorderBrush" Value="LightSeaGreen" />
             <Setter Property="BorderThickness" Value="2" />
-            <Setter Property="Background" Value="Black"/>
-            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Background" Value="Black" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Cursor" Value="Hand" />
         </Style>
-
-    </UserControl.Resources>
+    </Window.Resources>
+    
     <Border BorderBrush="#55FFFFFF" BorderThickness="1" CornerRadius="5">
-        <Border  DockPanel.Dock="Top" Background="Black">
-            <!--<Border.Background/>
-                         
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#3BB2EA" Offset="0" />
-                            <GradientStop Color="#EFF7FA" Offset="0.3" />
-                        </LinearGradientBrush>
-                    </Border.Background>-->
-
-            <Grid >
-
+        <Border DockPanel.Dock="Top" Background="Black">
+            <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="1.2*" />
+                    <RowDefinition Height="3*" />
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="Robot Control" Margin="0,0,0,0" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <StackPanel Grid.Row="1" Margin="0,20,0,0"  HorizontalAlignment="Center" VerticalAlignment="Top" >
+                <TextBlock Grid.Row="0" Text="Robot Control" Margin="0,0,0,0" FontSize="30"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <StackPanel Grid.Row="1" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2*" />
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Get data" Command="{Binding GetDataCommand}" Height="42" Width="120" />
+                        <Button Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Get data"
+                                Command="{Binding GetDataCommand}" Height="42" Width="120" />
                         <StackPanel Grid.Column="1">
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" Text="Temperature" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                <TextBlock Grid.Row="0" Text="{Binding Temperature}" Margin ="200,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                <TextBlock Grid.Row="1" Text="Humidity" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                <TextBlock Grid.Row="1" Text="{Binding Humidity}" Margin ="200,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Row="0" Text="Temperature" HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Grid.Row="0" Text="{Binding Temperature}" Margin="200,0,0,0"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <TextBlock Grid.Row="1" Text="Humidity" HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Grid.Row="1" Text="{Binding Humidity}" Margin="200,0,0,0"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Grid>
                         </StackPanel>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Grid.Row="2" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Button Content="{StaticResource ArrowUp}" Command="{Binding DrivingDirectionCommand}" CommandParameter="Up" Grid.Row="0"  Style="{StaticResource {x:Type Button}}" Width="70" Height="70" />
+                        <Button Content="{StaticResource ArrowRight}" Command="{Binding DrivingDirectionCommand}" CommandParameter="Right" Grid.Row="1" Style="{StaticResource {x:Type Button}}" Width="70" Height="70" Margin="140,0,0,0" />
+                        <Button Content="{StaticResource ArrowDown}" Command="{Binding DrivingDirectionCommand}" CommandParameter="Down" Grid.Row="2" Style="{StaticResource {x:Type Button}}" Width="70" Height="70"/>
+                        <Button Content="{StaticResource ArrowLeft}" Command="{Binding DrivingDirectionCommand}" CommandParameter="Left" Grid.Row="1" Style="{StaticResource {x:Type Button}}" Width="70" Height="70" Margin="0,0,140,0"/>
                     </Grid>
                 </StackPanel>
             </Grid>
         </Border>
     </Border>
-</UserControl>
+</Window>

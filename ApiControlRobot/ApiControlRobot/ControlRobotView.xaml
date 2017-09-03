@@ -4,17 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModel="clr-namespace:ApiControlRobot.VIewModel"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" Height="600" Width="400">
-    
-    <Window.DataContext>
-        <viewModel:ControlRobotViewModel />
-    </Window.DataContext>
-    
+
     <Window.Resources>
-        <Image x:Key="ArrowUp" Source="Images/arrowUp.png"/>
-        <Image x:Key="ArrowRight" Source="Images/arrowRight.png"/>
-        <Image x:Key="ArrowLeft" Source="Images/arrowLeft.png"/>
-        <Image x:Key="ArrowDown" Source="Images/arrowDown.png"/>
+        <Image x:Key="ArrowUp" Name="Up" Source="Images/arrowUp.png" MouseDown="OnMouseDown"  />
+        <Image x:Key="ArrowRight" Name="Right" Source="Images/arrowRight.png" MouseDown="OnMouseDown" />
+        <Image x:Key="ArrowLeft" Name="Left" Source="Images/arrowLeft.png" MouseDown="OnMouseDown" />
+        <Image x:Key="ArrowDown" Name="Down" Source="Images/arrowDown.png" MouseDown="OnMouseDown" />
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="LightSeaGreen" />
             <Setter Property="FontSize" Value="20" />
@@ -37,7 +34,7 @@
                     <RowDefinition Height="1.2*" />
                     <RowDefinition Height="3*" />
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="Robot Control" Margin="0,0,0,0" FontSize="30"
+                <TextBlock   Grid.Row="0" Text="Robot Control" Margin="0,0,0,0" FontSize="30"
                            HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <StackPanel Grid.Row="1" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <Grid>
@@ -59,25 +56,27 @@
                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
                                 <TextBlock Grid.Row="1" Text="Humidity" HorizontalAlignment="Center"
                                            VerticalAlignment="Center" />
-                                <TextBlock Grid.Row="1" Text="{Binding Humidity}" Margin="200,0,0,0"
+                                <TextBlock  Grid.Row="1" Text="{Binding Humidity}" Margin="200,0,0,0"
                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Grid>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
-                <StackPanel Grid.Row="2" >
+                <TextBlock Text="{Binding Direction}" Grid.Row="2" HorizontalAlignment="Left" Margin="30,20,0,0"/>
+                <StackPanel  Grid.Row="2" HorizontalAlignment="Right" >
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Button Content="{StaticResource ArrowUp}" Command="{Binding DrivingDirectionCommand}" CommandParameter="Up" Grid.Row="0"  Style="{StaticResource {x:Type Button}}" Width="70" Height="70" />
-                        <Button Content="{StaticResource ArrowRight}" Command="{Binding DrivingDirectionCommand}" CommandParameter="Right" Grid.Row="1" Style="{StaticResource {x:Type Button}}" Width="70" Height="70" Margin="140,0,0,0" />
-                        <Button Content="{StaticResource ArrowDown}" Command="{Binding DrivingDirectionCommand}" CommandParameter="Down" Grid.Row="2" Style="{StaticResource {x:Type Button}}" Width="70" Height="70"/>
-                        <Button Content="{StaticResource ArrowLeft}" Command="{Binding DrivingDirectionCommand}" CommandParameter="Left" Grid.Row="1" Style="{StaticResource {x:Type Button}}" Width="70" Height="70" Margin="0,0,140,0"/>
+                        <Button Content="{StaticResource ArrowUp}"  Click="OnClick" Grid.Row="0"  Style="{StaticResource {x:Type Button}}" Width="70" Height="70" />
+                        <Button Content="{StaticResource ArrowRight}"  Click="OnClick" Grid.Row="1" Style="{StaticResource {x:Type Button}}" Width="70" Height="70" Margin="140,0,0,0" />
+                        <Button Content="{StaticResource ArrowDown}"  Click="OnClick" Grid.Row="2" Style="{StaticResource {x:Type Button}}" Width="70" Height="70"/>
+                        <Button Content="{StaticResource ArrowLeft}" Click="OnClick" Grid.Row="1" Style="{StaticResource {x:Type Button}}" Width="70" Height="70" Margin="0,0,140,0"/>
                     </Grid>
                 </StackPanel>
+            
             </Grid>
         </Border>
     </Border>

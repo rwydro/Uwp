@@ -1,34 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using ApiControlRobot.VIewModel;
 
 namespace ApiControlRobot
 {
     /// <summary>
-    /// Interaction logic for ControlRobotView.xaml
+    ///     Interaction logic for ControlRobotView.xaml
     /// </summary>
-    public partial class ControlRobotView :Window
+    public partial class ControlRobotView : Window
     {
+        private readonly ChoiceDirection choiceDirection;
+
         public ControlRobotView()
         {
             InitializeComponent();
-
+            choiceDirection = new ChoiceDirection();
+            var viewModel = new ControlRobotViewModel(choiceDirection);
+            DataContext = viewModel;
         }
 
-        private void UIElement_OnMouseDown(object sender, MouseButtonEventArgs e)
+        private void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
-            
+            var arrow = (Image) sender;
+            choiceDirection.OnChoiceDrivingDirection(new DrivingDirectionEventArgs {Direction = arrow.Name});
+        }
+
+        private void OnClick(object sender, RoutedEventArgs e)
+        {
+            choiceDirection.OnChoiceDrivingDirection(new DrivingDirectionEventArgs {Direction = "Stop"});
         }
     }
 }

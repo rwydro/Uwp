@@ -1,44 +1,47 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Input;
-using ApiControlRobot.Annotations;
-using ApiControlRobot.Dto;
 using ApiControlRobot.Logic;
 using Microsoft.Practices.Prism.Commands;
 
 namespace ApiControlRobot.VIewModel
 {
-    public class ControlRobotViewModel:BaseVIewModel
+    public class ControlRobotViewModel : BaseVIewModel
     {
-        public DelegateCommand GetDataCommand { get; set; }
-
         public delegate void test(string ss);
-        private WebService myWebService;
 
-      
+
+        private string direction;
+
 
         private string humidity;
+        private readonly WebService myWebService;
+
+        private string temperature;
+
+        public ControlRobotViewModel(ChoiceDirection choiceDirection)
+        {
+            GetDataCommand = new DelegateCommand(GetData);
+            choiceDirection.ChoiceDirectionEventHandler += Direction_ChoiceDirectionEventHandler;
+            myWebService = new WebService();
+            Temperature = "25";
+            Humidity = "25";
+        }
+
+        public DelegateCommand GetDataCommand { get; set; }
+
         public string Humidity
         {
-            get { return humidity; }
+            get => humidity;
             set
             {
-                if(humidity==value)return;
+                if (humidity == value) return;
                 humidity = value;
                 OnPropertyChanged("Humidity");
             }
         }
 
-        private string temperature;
         public string Temperature
         {
-            get { return temperature; }
+            get => temperature;
             set
             {
                 if (temperature == value) return;
@@ -47,15 +50,16 @@ namespace ApiControlRobot.VIewModel
             }
         }
 
-        public ControlRobotViewModel(ChoiceDirection choiceDirection):base()
+
+        public string Direction
         {
-        
-            GetDataCommand=new DelegateCommand(GetData);
-            choiceDirection.ChoiceDirectionEventHandler += new EventHandler<DrivingDirectionEventArgs>(Direction_ChoiceDirectionEventHandler);
-            myWebService = new WebService();
-            Temperature = "25";
-            Humidity = "25";
-    
+            get => direction;
+            set
+            {
+                if (direction == value) return;
+                direction = value;
+                OnPropertyChanged("Direction");
+            }
         }
 
         private void Direction_ChoiceDirectionEventHandler(object sender, EventArgs e)
@@ -65,24 +69,8 @@ namespace ApiControlRobot.VIewModel
                 Direction = myWebService.SendDrivingDirection(directionEventArg.Direction);
         }
 
-     
-
-        private string direction;
-
-
-        public string  Direction
-            {
-            get { return direction; }
-            set
-            {
-                if (direction == value) return;
-                direction = value;
-                OnPropertyChanged("Direction");
-            }
-        }
-
         private void SetDireciton(object obj, EventArgs e)
-        { 
+        {
             Direction = myWebService.SendDrivingDirection(obj.ToString());
         }
 
@@ -93,6 +81,5 @@ namespace ApiControlRobot.VIewModel
             Temperature = result.Temperature;
             Humidity = result.Humidity;
         }
-
     }
 }

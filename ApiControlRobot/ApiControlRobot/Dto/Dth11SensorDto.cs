@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ApiControlRobot.Dto
+﻿namespace ApiControlRobot.Dto
 {
     public class Dth11SensorDto
     {
@@ -13,4 +6,3 @@ namespace ApiControlRobot.Dto
         public string Humidity { get; set; }
     }
 }
-

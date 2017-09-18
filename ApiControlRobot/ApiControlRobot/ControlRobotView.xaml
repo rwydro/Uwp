@@ -64,6 +64,7 @@
                     </Grid>
                 </StackPanel>
                 <TextBlock Text="{Binding Direction}" Grid.Row="2" HorizontalAlignment="Left" Margin="30,20,0,0"/>
+                <Button Grid.Row="2" Style="{StaticResource {x:Type Button}}" Name="Route" Content="Square route" Click="Route_OnClick" Width="70" Height="70" Margin="50,100,250,120"/>
                 <StackPanel  Grid.Row="2" HorizontalAlignment="Right" >
                     <Grid>
                         <Grid.RowDefinitions>
@@ -71,7 +72,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Button Name="Up" Content="{StaticResource ArrowUp}"  Click="OnClick" Grid.Row="0"  Style="{StaticResource {x:Type Button}}" Width="70" Height="70" />
+                        <Button Name="Up"    Content="{StaticResource ArrowUp}"  Click="OnClick" Grid.Row="0"  Style="{StaticResource {x:Type Button}}" Width="70" Height="70" />
                         <Button Name="Right" Content="{StaticResource ArrowRight}"  Click="OnClick" Grid.Row="1" Style="{StaticResource {x:Type Button}}" Width="70" Height="70" Margin="140,0,0,0" />
                         <Button Name="Down" Content="{StaticResource ArrowDown}"  Click="OnClick" Grid.Row="2" Style="{StaticResource {x:Type Button}}" Width="70" Height="70"/>
                         <Button Name="Left" Content="{StaticResource ArrowLeft}" Click="OnClick" Grid.Row="1" Style="{StaticResource {x:Type Button}}" Width="70" Height="70" Margin="0,0,140,0"/>

@@ -74,5 +74,11 @@ namespace ApiControlRobot
             }
 
         }
+
+        private void Route_OnClick(object sender, RoutedEventArgs e)
+        {
+            choiceDirection.OnChoiceDrivingDirection(new DrivingDirectionEventArgs { Direction = "goSquare" });
+        }
+        
     }
 }

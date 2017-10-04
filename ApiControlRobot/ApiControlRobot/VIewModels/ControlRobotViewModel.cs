@@ -17,10 +17,10 @@ namespace ApiControlRobot.VIewModel
 
         private string temperature;
 
-        public ControlRobotViewModel(ChoiceDirection choiceDirection)
+        public ControlRobotViewModel(ChoiceDirectionEvent choiceDirectionEvent)
         {
             GetDataCommand = new DelegateCommand(GetData);
-            choiceDirection.ChoiceDirectionEventHandler += Direction_ChoiceDirectionEventHandler;
+            choiceDirectionEvent.ChoiceDirectionEventHandler += Direction_ChoiceDirectionEventHandler;
             myWebService = new WebService();
             Temperature = "25";
             Humidity = "25";

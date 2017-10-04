@@ -503,7 +503,7 @@ namespace ApiControlRobot.Annotations
 
   /// <summary>
   /// An extension method marked with this attribute is processed by ReSharper code completion
-  /// as a 'Source Template'. When extension method is completed over some expression, it's source code
+  /// as a 'CameraSource Template'. When extension method is completed over some expression, it's source code
   /// is automatically expanded like a template at call site.
   /// </summary>
   /// <remarks>

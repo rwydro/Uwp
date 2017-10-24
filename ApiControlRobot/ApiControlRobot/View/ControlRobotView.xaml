@@ -1,0 +1,97 @@
+﻿<Window x:Class="ApiControlRobot.ControlRobotView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModel="clr-namespace:ApiControlRobot.VIewModel"
+             xmlns:cameraStream="clr-namespace:ApiControlRobot"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             mc:Ignorable="d" Height="900" Width="1300">
+
+    <Window.Resources>
+        <Image x:Key="ArrowUp" Name="Up" Source="/Images/arrowUp.png" MouseDown="OnMouseDown"  Stretch="Fill"/>
+        <Image x:Key="ArrowRight" Name="Right" Source="/Images/arrowRight.png" MouseDown="OnMouseDown"  Stretch="Fill"/>
+        <Image x:Key="ArrowLeft" Name="Left" Source="/Images/arrowLeft.png" MouseDown="OnMouseDown"   Stretch="Fill"/>
+        <Image x:Key="ArrowDown" Name="Down" Source="/Images/arrowDown.png" MouseDown="OnMouseDown"   Stretch="Fill"/>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="LightSeaGreen" />
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="LightSeaGreen" />
+            <Setter Property="BorderBrush" Value="LightSeaGreen" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Background" Value="Black" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+    </Window.Resources>
+    
+    <Border BorderBrush="#55FFFFFF" BorderThickness="1" CornerRadius="5">
+        <Border DockPanel.Dock="Top" Background="Black">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="0.5*" />
+                    <RowDefinition Height="8*" />
+                </Grid.RowDefinitions>
+                <TextBlock   Grid.Row="0" Text="Robot Control" Margin="0,0,0,0" FontSize="30"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <StackPanel Grid.Row="1" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Get data"
+                                Command="{Binding GetDataCommand}" Height="42" Width="120" />
+                        <StackPanel Grid.Column="1">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Text="Temperature" HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Grid.Row="0" Text="{Binding Temperature}" Margin="200,0,0,0"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <TextBlock Grid.Row="1" Text="Humidity" HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" />
+                                <TextBlock  Grid.Row="1" Text="{Binding Humidity}" Margin="200,0,0,0"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+                <TextBlock Text="{Binding Direction}" Grid.Row="2" HorizontalAlignment="Center" Margin="100,10,0,0" />
+                <StackPanel Grid.Row="3">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                <cameraStream:CameraStreamView Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50,100,0,0"/>
+                <!--<TextBlock Text="{Binding Direction}" Grid.Column="2" HorizontalAlignment="Left" Margin="0,20,0,0"/>-->
+                       
+                <Button Grid.Column="2" Style="{StaticResource {x:Type Button}}" Name="Route" Content="Square route" Click="Route_OnClick" Width="70" Height="70" />
+                <StackPanel  Grid.Column="1" HorizontalAlignment="Right" Margin="0,200,50,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Button Name="Up"    Content="{StaticResource ArrowUp}"  Click="OnClick" Grid.Row="0"  Style="{StaticResource {x:Type Button}}" Width="70" Height="70" />
+                        <Button Name="Right" Content="{StaticResource ArrowRight}"  Click="OnClick" Grid.Row="1" Style="{StaticResource {x:Type Button}}" Width="70" Height="70" Margin="140,0,0,0" />
+                        <Button Name="Down" Content="{StaticResource ArrowDown}"  Click="OnClick" Grid.Row="2" Style="{StaticResource {x:Type Button}}" Width="70" Height="70"/>
+                        <Button Name="Left" Content="{StaticResource ArrowLeft}" Click="OnClick" Grid.Row="1" Style="{StaticResource {x:Type Button}}" Width="70" Height="70" Margin="0,0,140,0"/>
+                    </Grid>
+                </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Border>
+</Window>

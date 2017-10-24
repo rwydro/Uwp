@@ -1,4 +1,4 @@
-﻿using System.Configuration;
+﻿ using System.Configuration;
 using System.IO;
 using System.Net;
 using ApiControlRobot.Dto;
@@ -11,7 +11,7 @@ namespace ApiControlRobot.Logic
         private HttpWebRequest httpWebRequest;
 
 
-        public string SendDrivingDirection(string direction)
+        public DirectionDto SendDrivingDirection(string direction)
         {
             var url = string.Format("http://{0}:5000/{1}", ConfigurationManager.AppSettings["ip"], direction);
             httpWebRequest = (HttpWebRequest) WebRequest.Create(url);
@@ -22,7 +22,7 @@ namespace ApiControlRobot.Logic
             var httpResponse = (HttpWebResponse) httpWebRequest.GetResponse();
             using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
             {
-                var result = streamReader.ReadToEnd();
+                var result = JsonConvert.DeserializeObject<DirectionDto>(streamReader.ReadToEnd());
                 return result;
             }
         }

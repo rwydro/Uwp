@@ -2,8 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ApiControlRobot"
-             StartupUri="ControlRobotView.xaml" >
+             StartupUri="View/ControlRobotView.xaml" >
     <Application.Resources>
-        <NavigationWindow x:Key="Mw" Source="ControlRobotView.xaml" Visibility="Visible"/>
+        <NavigationWindow x:Key="Mw" Source="/View/ControlRobotView.xaml" Visibility="Visible"/>
     </Application.Resources>
 </Application>

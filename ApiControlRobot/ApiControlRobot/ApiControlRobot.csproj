@@ -104,19 +104,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BitMapHelper.cs" />
-    <Compile Include="CameraStreamView.xaml.cs">
+    <Compile Include="Dto\DirectionDto.cs" />
+    <Compile Include="Logic\BitMapHelper.cs" />
+    <Compile Include="View\CameraStreamView.xaml.cs">
       <DependentUpon>CameraStreamView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ChoiceDirectionEvent.cs" />
-    <Compile Include="ControlRobotView.xaml.cs">
+    <Compile Include="Logic\ChoiceDirectionEvent.cs" />
+    <Compile Include="View\ControlRobotView.xaml.cs">
       <DependentUpon>ControlRobotView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dto\Dth11SensorDto.cs" />
     <Compile Include="Logic\WebService.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="VIewModels\BaseVIewModel.cs" />
-    <Compile Include="VIewModels\ControlRobotViewModel.cs" />
+    <Compile Include="ViewModels\BaseVIewModel.cs" />
+    <Compile Include="ViewModels\ControlRobotViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -153,11 +154,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="CameraStreamView.xaml">
+    <Page Include="View\CameraStreamView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ControlRobotView.xaml">
+    <Page Include="View\ControlRobotView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

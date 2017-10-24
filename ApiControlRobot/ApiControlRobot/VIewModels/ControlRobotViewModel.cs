@@ -66,13 +66,17 @@ namespace ApiControlRobot.VIewModel
         {
             var directionEventArg = e as DrivingDirectionEventArgs;
             if (directionEventArg != null)
-                Direction = myWebService.SendDrivingDirection(directionEventArg.Direction);
+            {
+                Direction = String.Format("Yo go {0}",
+                    myWebService.SendDrivingDirection(directionEventArg.Direction).Direction);
+                if(directionEventArg.Direction == "Stop") Direction = "Stop";
+            }
         }
 
-        private void SetDireciton(object obj, EventArgs e)
-        {
-            Direction = myWebService.SendDrivingDirection(obj.ToString());
-        }
+        //private void SetDireciton(object obj, EventArgs e)
+        //{
+        //    Direction = myWebService.SendDrivingDirection(obj.ToString()).Direction;
+        //}
 
         private void GetData()
         {
